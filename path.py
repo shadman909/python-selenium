@@ -41,7 +41,7 @@ def login_to_saucedemo():
     else:
         print("Login failed!")
 
-    # Close the browser
+    
     time.sleep(2)
     driver.quit()
     print("Browser closed")
