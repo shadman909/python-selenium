@@ -1,1 +1,28 @@
 
+import time
+import os
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+
+driver = webdriver.Chrome()
+driver.get("https://demoqa.com/upload-download")
+driver.maximize_window()
+
+downloads_path = os.path.join(os.path.expanduser("~"), "Downloads")
+before_download = set(os.listdir(downloads_path))  # Files before click
+
+# Click the download button
+driver.find_element(By.ID, "downloadButton").click()
+
+
+time.sleep(5)
+
+
+after_download = set(os.listdir(downloads_path))
+new_files = after_download - before_download
+
+assert new_files, "Download not completed"
+print("Download is completed. New_files:", new_files)
+
+driver.quit()
